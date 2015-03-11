@@ -1,6 +1,7 @@
 package com.example.zhmakin.sunshine;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 public class WeatherForecastFragment extends Fragment {
 
     ArrayAdapter<String> adapter;
+    Context context;
 
     public WeatherForecastFragment() {
     }
@@ -41,6 +43,7 @@ public class WeatherForecastFragment extends Fragment {
 
         setHasOptionsMenu(true);
         // GetWeatherForecastInfo();
+        context = container.getContext();
 
         ArrayList<String> list = new ArrayList<String>();
         list.add("Today - Sunny - 88/63");
@@ -69,8 +72,12 @@ public class WeatherForecastFragment extends Fragment {
                 Context context = container.getContext();
                 String text = adapter.getItem(position);
 
-                Toast toast = Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
-                toast.show();
+               // Toast toast = Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
+                //toast.show();
+
+                Intent detailIntent = new Intent(context, Detail.class);
+                detailIntent.putExtra(Intent.EXTRA_TEXT, text);
+                startActivity(detailIntent);
             }
         });
 
@@ -93,10 +100,13 @@ public class WeatherForecastFragment extends Fragment {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent detailIntent = new Intent(context, SettingsActivity.class);
+            startActivity(detailIntent);
+        }
+        else if (id == R.id.action_settings) {
+            new FetchWeatherTask(adapter).execute("SaintPeterburg");
         }
 
-        new FetchWeatherTask(adapter).execute("SaintPeterburg");
 
         return super.onOptionsItemSelected(item);
     }
