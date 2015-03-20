@@ -2,6 +2,7 @@ package com.example.zhmakin.sunshine;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -103,12 +104,22 @@ public class WeatherForecastFragment extends Fragment {
             Intent detailIntent = new Intent(context, SettingsActivity.class);
             startActivity(detailIntent);
         }
-        else if (id == R.id.action_settings) {
-            new FetchWeatherTask(adapter).execute("SaintPeterburg");
+        else if (id == R.id.action_refresh) {
+            new FetchWeatherTask(adapter).execute("94043");//"SaintPeterburg");
         }
-
-
+        else if (id == R.id.action_show_map) {
+            Uri uri = Uri.parse("geo:0,0?q=Kursk");
+            showMap(uri);//"SaintPeterburg"); geo:0,0?q=Kursk
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showMap(Uri geoLocation) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
 }
