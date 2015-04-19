@@ -2,10 +2,10 @@ package com.example.zhmakin.sunshine;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,14 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +24,7 @@ import java.util.ArrayList;
 public class WeatherForecastFragment extends Fragment {
 
     ArrayAdapter<String> adapter;
-    Context context;
+    Context _context;
 
     public WeatherForecastFragment() {
     }
@@ -43,10 +36,10 @@ public class WeatherForecastFragment extends Fragment {
 
         setHasOptionsMenu(true);
         // GetWeatherForecastInfo();
-        context = container.getContext();
+        _context = container.getContext();
 
         ArrayList<String> list = new ArrayList<String>();
-        list.add("Today - Sunny - 88/63");
+       /* list.add("Today - Sunny - 88/63");
         list.add("Tomorrow - Foggy - 81/60");
         list.add("Day3 - Sunny - 88/63");
         list.add("Day4 - Sunny - 88/63");
@@ -59,7 +52,7 @@ public class WeatherForecastFragment extends Fragment {
         list.add("Day11 - Sunny - 88/63");
         list.add("Day12 - Sunny - 88/63");
         list.add("Day13 - Sunny - 88/63");
-        list.add("Day14 - Sunny - 88/63");
+        list.add("Day14 - Sunny - 88/63");*/
 
         adapter = new ArrayAdapter<String>(
                 getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_textView, list);
@@ -80,7 +73,7 @@ public class WeatherForecastFragment extends Fragment {
                 startActivity(detailIntent);
             }
         });
-
+        //UpdateWeather();
         return rootView;
 
     }
@@ -100,15 +93,22 @@ public class WeatherForecastFragment extends Fragment {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent detailIntent = new Intent(context, SettingsActivity.class);
+            Intent detailIntent = new Intent(_context, SettingsActivity.class);
             startActivity(detailIntent);
         }
-        else if (id == R.id.action_settings) {
-            new FetchWeatherTask(adapter).execute("SaintPeterburg");
+        else if (id == R.id.action_refresh) {
+            UpdateWeather();
         }
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void UpdateWeather()
+    {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(_context);
+        String syncConnPref = sharedPref.getString("Location", "");
+        new FetchWeatherTask(adapter).execute(syncConnPref);//"SaintPeterburg");
     }
 
 }

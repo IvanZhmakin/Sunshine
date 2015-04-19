@@ -57,10 +57,14 @@ public class FetchWeatherTask extends AsyncTask<Object, Void, String[]>
 
         try
         {
+            String location = (String)params[0];
+            String urlStr = String.format("http://api.openweathermap.org/data/2.5/forecast/daily?q=%s&mode=json&units=%s&cnt=%d",
+                    location, "metric",7);
             // Construct the URL for the OpenWeatherMap query
             // Possible parameters are available at OWM's forecast API page, at
             // http://openweathermap.org/API#forecast
-            URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7");
+            // "http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7"
+            URL url = new URL(urlStr);
 
             // Create the request to OpenWeatherMap, and open the connection
             urlConnection = (HttpURLConnection) url.openConnection();
@@ -152,6 +156,9 @@ public class FetchWeatherTask extends AsyncTask<Object, Void, String[]>
     }
     protected void onPostExecute(String[] results)
     {
+        if (results == null || results.length == 0)
+            return;
+
         ArrayAdapter<String> adapter = (ArrayAdapter<String>)_adapter;
         adapter.clear();
         for (String s: results)
