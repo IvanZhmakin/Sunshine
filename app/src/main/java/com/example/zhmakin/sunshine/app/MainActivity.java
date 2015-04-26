@@ -1,10 +1,9 @@
-package com.example.zhmakin.sunshine;
+package com.example.zhmakin.sunshine.app;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ListView;
+
+import com.example.zhmakin.sunshine.R;
 
 
 public class MainActivity extends ActionBarActivity {

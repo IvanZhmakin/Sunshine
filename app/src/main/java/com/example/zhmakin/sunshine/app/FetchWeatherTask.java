@@ -1,14 +1,11 @@
-package com.example.zhmakin.sunshine;
+package com.example.zhmakin.sunshine.app;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.text.format.Time;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +18,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by Zhmakin on 23.02.2015.
