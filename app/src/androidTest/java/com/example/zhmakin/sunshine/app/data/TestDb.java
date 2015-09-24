@@ -19,6 +19,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
 
+import com.example.zhmakin.sunshine.data.WeatherContract;
+
 import java.util.HashSet;
 
 public class TestDb extends AndroidTestCase {

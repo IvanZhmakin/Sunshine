@@ -1,4 +1,4 @@
-package com.example.zhmakin.sunshine.app;
+package com.example.zhmakin.sunshine;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import android.net.Uri;
+import android.os.AsyncTask;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -19,8 +20,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import com.example.zhmakin.sunshine.R;
 
 import java.util.ArrayList;
 

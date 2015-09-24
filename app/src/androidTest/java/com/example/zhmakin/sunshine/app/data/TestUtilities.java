@@ -9,6 +9,7 @@ import android.os.HandlerThread;
 import android.test.AndroidTestCase;
 
 import com.example.zhmakin.sunshine.app.utils.PollingCheck;
+import com.example.zhmakin.sunshine.data.WeatherContract;
 
 import java.util.Map;
 import java.util.Set;

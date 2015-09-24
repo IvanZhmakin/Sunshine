@@ -18,8 +18,7 @@ package com.example.zhmakin.sunshine.app.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-//import com.example.zhmakin.sunshine.app.data.WeatherContract.LocationEntry;
-// лишний app
+
 import com.example.zhmakin.sunshine.app.data.WeatherContract.LocationEntry;
 import com.example.zhmakin.sunshine.app.data.WeatherContract.WeatherEntry;
 

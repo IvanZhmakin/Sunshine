@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.zhmakin.sunshine.app.data;
+package com.example.zhmakin.sunshine.data;
 
 import android.provider.BaseColumns;
 import android.text.format.Time;

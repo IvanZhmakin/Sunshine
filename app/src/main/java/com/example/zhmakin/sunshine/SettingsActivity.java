@@ -1,4 +1,4 @@
-package com.example.zhmakin.sunshine.app;
+package com.example.zhmakin.sunshine;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,8 +7,6 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
-
-import com.example.zhmakin.sunshine.R;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings.
